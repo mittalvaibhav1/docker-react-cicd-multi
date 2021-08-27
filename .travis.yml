@@ -17,3 +17,17 @@ after_success:
   - docker push mittalvaibhav1/multi-nginx
   - docker push mittalvaibhav1/multi-server
   - docker push mittalvaibhav1/multi-workers
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: multi-docker
+  bucket_name: mys3bucket
+  bucket_path: /multi-docker
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SERET_KEY
+  
